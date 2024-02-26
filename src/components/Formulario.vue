@@ -5,6 +5,7 @@
       Añade pacientes
       <span class="text-indigo-600 font-bold">Adminístralos</span>
     </p>
+    <Alerta v-if="alerta.mensaje" :alerta="alerta" />
     <form
       @submit.prevent="validar"
       class="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
@@ -80,7 +81,7 @@
 </template>
 <script setup>
 import { reactive } from "vue";
-import { Alerta } from "./Alerta.vue";
+import Alerta from "./Alerta.vue";
 const alerta = reactive({
   tipo: "",
   mensaje: "",
