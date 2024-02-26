@@ -87,6 +87,9 @@ const paciente = reactive({
   sintomas: "",
 });
 const validar = (e) => {
-  console.log("validando ..");
+  if (Object.values(paciente).includes("")) {
+    console.log("Hay vacios");
+    return;
+  }
 };
 </script>
