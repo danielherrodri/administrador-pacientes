@@ -5,12 +5,14 @@
       Añade pacientes
       <span class="text-indigo-600 font-bold">Adminístralos</span>
     </p>
-    <form action="" class="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
+    <form
+      @submit.prevent="validar"
+      class="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
+    >
       <div class="mb-5">
         <label for="mascota" class="block text-gray-700 uppercase font-bold">
           Nombre Mascota
         </label>
-        {{ paciente.nombre }}
         <input
           id="mascota"
           type="text"
@@ -84,4 +86,7 @@ const paciente = reactive({
   email: "",
   sintomas: "",
 });
+const validar = (e) => {
+  console.log("validando ..");
+};
 </script>
