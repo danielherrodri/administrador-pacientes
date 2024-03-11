@@ -1,3 +1,53 @@
+<script setup>
+import { reactive } from "vue";
+import Alerta from "./Alerta.vue";
+
+const props = defineProps({
+  nombre: {
+    type: String,
+    required: true,
+  },
+  propietario: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  alta: {
+    type: String,
+    required: true,
+  },
+  sintomas: {
+    type: String,
+    required: true,
+  },
+});
+
+const alerta = reactive({
+  tipo: "",
+  mensaje: "",
+});
+
+const emit = defineEmits([
+  "update:nombre",
+  "update:propietario",
+  "update:email",
+  "update:alta",
+  "update:sintomas",
+  "guardar-paciente",
+]);
+
+const validar = (e) => {
+  if (Object.values(props).includes("")) {
+    alerta.mensaje = "Todos los campos son obligatorios.";
+    alerta.tipo = "error";
+    return;
+  }
+  emit("guardar-paciente");
+};
+</script>
 <template>
   <div class="md:w-1/2">
     <h2 class="font-black text-3xl text-center">Seguimiento pacientes</h2>
@@ -84,51 +134,3 @@
     </form>
   </div>
 </template>
-<script setup>
-import { reactive } from "vue";
-import Alerta from "./Alerta.vue";
-
-const props = defineProps({
-  nombre: {
-    type: String,
-    required: true,
-  },
-  propietario: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  alta: {
-    type: String,
-    required: true,
-  },
-  sintomas: {
-    type: String,
-    required: true,
-  },
-});
-
-const alerta = reactive({
-  tipo: "",
-  mensaje: "",
-});
-
-defineEmits([
-  "update:nombre",
-  "update:propietario",
-  "update:email",
-  "update:alta",
-  "update:sintomas",
-]);
-
-const validar = (e) => {
-  if (Object.values(props).includes("")) {
-    alerta.mensaje = "Todos los campos son obligatorios.";
-    alerta.tipo = "error";
-    return;
-  }
-};
-</script>
