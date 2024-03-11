@@ -8,12 +8,23 @@ const pacientes = ref([]);
 const paciente = reactive({
   nombre: "",
   propietario: "",
+  alta: "",
   email: "",
   sintomas: "",
 });
 
 const guardarPaciente = () => {
-  pacientes.value.push(paciente);
+  pacientes.value.push({
+    ...paciente,
+  });
+
+  Object.assign(paciente, {
+    nombre: "",
+    alta: "",
+    propietario: "",
+    email: "",
+    sintomas: "",
+  });
 };
 </script>
 
