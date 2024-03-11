@@ -19,7 +19,7 @@
           type="text"
           placeholder="Nombre de la mascota"
           class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-     
+          @input="$emit('update:nombre', $event.target.value)"
         />
       </div>
       <div class="mb-5">
@@ -34,7 +34,6 @@
           type="text"
           placeholder="Nombre del propietario"
           class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-       
         />
       </div>
       <div class="mb-5">
@@ -46,7 +45,6 @@
           type="email"
           placeholder="Email del propietario"
           class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-         
         />
       </div>
       <div class="mb-5">
@@ -57,7 +55,6 @@
           id="alta"
           type="date"
           class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-          
         />
       </div>
       <div class="mb-5">
@@ -68,7 +65,6 @@
           id="sintomas"
           placeholder="Describe los síntomas del paciente"
           class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40"
-        
         />
       </div>
       <input
@@ -82,10 +78,20 @@
 <script setup>
 import { reactive } from "vue";
 import Alerta from "./Alerta.vue";
+
+const props = defineProps({
+  nombre: {
+    type: String,
+    required: true,
+  },
+});
+
 const alerta = reactive({
   tipo: "",
   mensaje: "",
 });
+
+defineEmits(["update:nombre"]);
 
 const validar = (e) => {
   if (Object.values(paciente).includes("")) {
