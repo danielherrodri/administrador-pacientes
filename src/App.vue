@@ -1,11 +1,15 @@
 <script setup>
 import { ref, reactive } from "vue";
+import { uid } from "uid";
+
 import Header from "./components/Header.vue";
 import Formulario from "./components/Formulario.vue";
 import Paciente from "./components/Paciente.vue";
 
 const pacientes = ref([]);
+
 const paciente = reactive({
+  id: null,
   nombre: "",
   propietario: "",
   alta: "",
@@ -16,6 +20,7 @@ const paciente = reactive({
 const guardarPaciente = () => {
   pacientes.value.push({
     ...paciente,
+    id: uid(),
   });
 
   Object.assign(paciente, {
@@ -50,7 +55,7 @@ const guardarPaciente = () => {
             Información de
             <span class="text-indigo-600 font-bold">Pacientes</span>
           </p>
-          <Paciente for="paciente in pacientes" :paciente="paciente" />
+          <Paciente v-for="paciente in pacientes" :paciente="paciente" />
         </div>
         <p v-else class="mt-10 text-2xl text-center">No hay pacientes</p>
       </div>
