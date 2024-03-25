@@ -33,7 +33,8 @@ const guardarPaciente = () => {
 };
 
 const actualizarPaciente = (id) => {
-  console.log(id);
+  const pacienteEditar = pacientes.value.find((paciente) => paciente.id == id);
+  Object.assign(paciente, pacienteEditar);
 };
 </script>
 
